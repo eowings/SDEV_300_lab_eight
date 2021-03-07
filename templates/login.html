@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+{% block content %}
+<form action="{{ url_for('login') }}" method="POST">
+    <center>
+    <table class = "styled-table">
+    <thead>
+    <tr>
+    <th colspan="2">Enter your login info below.</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><label for="username">Username:</label></td>
+    <td><input id="username "name="username"></td></tr>
+    <tr>
+    <td><label for="username">Password:</label></td>
+    <td><input name="password" type="password"></td></tr>
+    <tr>
+    <td colspan="2"><center><button type="submit" class="btn btn-primary">Sign in</button></center></td></tr>
+    </tbody>
+    </table>
+    </center>
+{% if feedback %}
+<p>{{ feedback }}</p>
+{% endif %}
+</form>
+{% endblock %}

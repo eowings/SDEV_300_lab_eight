@@ -1,0 +1,71 @@
+<!-- Both the html and css file used in this lab were taken from Adobe Dreamweaver free templates several modifications were made to integrate flask. -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="HTML,CSS,Python,Flask,UMGC,Beer">
+<title>{{ title }}</title>
+<link href="{{ url_for('static',filename='css/multiColumnTemplate.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', filename='favicon.ico') }}" rel="shortcut icon" >
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="primary_header">
+      <h1 class="title"> Owings - Lab Eight: {{ title }}</h1>
+    </div>
+    <nav class="secondary_header" id="menu">
+      <ul>
+	{% if session.logged_in %}
+        <li><a href="{{url_for("home")}}">HOME</a></li>
+        <li><a href="{{url_for("beers")}}">BEERS</a></li>
+        <li><a href="{{url_for("recipes")}}">RECIPES</a></li>
+        <li><a href="{{url_for("conference")}}">CONFERENCE</a></li>
+	<li><a href="{{url_for("secretpage")}}">RESET PASSWORD</a></li>
+        <li><a href="{{url_for("logout")}}">LOGOUT</a></li>
+	{% else %}
+        <li><a href="{{url_for("register")}}">REGISTER</a></li>
+        <li><a href="{{url_for("login")}}">LOGIN</a></li>
+	{% endif %}
+      </ul>
+    </nav>
+  </header>
+  <section>
+    <h2 class="noDisplay">Main Content</h2>
+    <article class="left_article">
+    	{% block content %}
+    	{% endblock %}
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <p class="flashes">{{ message }}</p>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </article>
+    <aside class="right_article"><img src="static/images/{{plhld}}" alt="" width="400" height="200" class="placeholder"/> </aside>
+  </section>
+  <div class="row blockDisplay">
+    <div class="column_half left_half">
+      <h2 class="column_title">Todays Date is: {{date}}</h2>
+    </div>
+    <div class="column_half right_half">
+      <h2 class="column_title">The Current Time is: {{time}}</h2>
+    </div>
+  </div>
+  <div class="social">
+    <p class="social_icon"><a href="https://twitter.com/DCBeer" target="_blank" rel="noopener noreferrer"><img src="{{ url_for("static", filename="images/7FDycojb_400x400.jpg") }}" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="https://twitter.com/BeerAdvocate" target="_blank" rel="noopener noreferrer"><img src="{{ url_for("static", filename="images/d4PMQCll_400x400.jpg") }}" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="https://twitter.com/mdbrewers" target="_blank" rel="noopener noreferrer"><img src="{{ url_for("static", filename="images/4zZtEIKz_400x400.jpg") }}" width="100" alt="" class="thumbnail"/></a></p>
+    <p class="social_icon"><a href="https://twitter.com/craftbeerbrew" target="_blank" rel="noopener noreferrer"><img src="{{ url_for("static", filename="images/z9AmC59w_400x400.png") }}" width="100" alt="" class="thumbnail"/></a></p>
+  </div>
+  <footer class="secondary_header footer">
+    <div class="copyright">&copy;2021 - <strong>Owings: SDEV 300 Lab Eight</strong></div>
+  </footer>
+</div>
+</body>
+</html>

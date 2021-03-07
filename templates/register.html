@@ -1,0 +1,38 @@
+{% extends "home.html" %}
+{% block content %}
+<form action="{{ url_for('register') }}" method="POST">
+    <center>
+    <table class = "styled-table">
+    <thead>
+    <tr>
+    <th colspan="2">Fill in form below.</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><label for="username">Username:</label></td>
+    <td><input id="username "name="username"></td></tr>
+    <tr>
+    <td><label for="username">First name:</label></td>
+    <td><input name="firstname"></td></tr>
+    <tr>
+    <td><label for="username">Last name:</label></td>
+    <td><input name="lastname"></td></tr>
+    <tr>
+    <td><label for="username">Email:</label></td>
+    <td><input name="email"></td></tr>
+    <tr>
+    <td><label for="username">Password:</label></td>
+    <td><input name="password" type="password"></td></tr>
+    <tr>
+    <td colspan="2"><b>PLEASE DO NOT USE A REAL PASSWORD!</b><br>Password must be at least 12 and less than 20 characters in length, <br>and include at least 1 uppercase character, 1 lowercase character, <br>1 number and 1 special character.</td></tr>
+    <tr>
+    <td colspan="2"><center><button type="submit" class="btn btn-primary">Register</button></center></td></tr>
+    </tbody>
+    </table>
+    </center>
+{% if feedback %}
+<p>{{ feedback }}</p>
+{% endif %}
+</form>
+{% endblock %}
